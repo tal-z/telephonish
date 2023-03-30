@@ -7,18 +7,19 @@ export const HowToPlayPage = () => {
       <Header />
       <h1>How to Play</h1>
       <p>
-        Welcome to the game! Here's how to play:
+        Welcome to Telephonish! Here's how to play:
       </p>
       <ol>
-        <li>The game requires a minimum of 3 players and a maximum of 10 players.</li>
-        <li>The server will generate a prompt for each round of the game.</li>
-        <li>Players will have 60 seconds to submit their responses to the prompt.</li>
-        <li>After all responses have been submitted, players will vote on the best response.</li>
-        <li>Points will be awarded to players based on the number of votes their response received.</li>
-        <li>The player with the most points at the end of the game is the winner!</li>
+        <li>At the start of the game, each player writes a short message in response to a prompt.</li>
+        <li>At the start of each  round, a multimedia format will be randomly selected (drawing/sketch, audio recording, emojis, or text description) for that round.</li>
+        <li>For the first round, each player will be shown a message written by another player, and be asked to "re-encode" it in the multimedia format selected for that round.</li>
+        <li>In subsequent rounds, each player will then be given a re-encoded message that another player made during the previous round.</li>
+        <li>Each round has a time limit of 1 minute.</li>
+        <li>The game continues until all prompts have been re-encoded in every assigned format.</li>
+        <li>At the end of the game, players will be shown multi-media "slideshows" comparing each player's original prompt with the final output to see how it evolved through the game.</li>
       </ol>
       <p>
-        Have fun playing!
+        Have fun playing Telephonish!
       </p>
     </div>
   );
