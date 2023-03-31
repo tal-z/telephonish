@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from '../styles/Header.module.css';
+import React from "react";
+import styles from "../styles/Header.module.css";
 
 export const Header = () => {
   return (
@@ -9,9 +9,15 @@ export const Header = () => {
           <span className={styles.title}>Telephonish</span>
         </div>
         <nav className={styles.navbar}>
-          <a href="/" className={styles.navlink}>Home</a>
-          <a href="/how-to-play" className={styles.navlink}>How to Play</a>
-          <a href="/gameplay" className={styles.navlink}>Play</a>
+          <a href="/" className={styles.navlink}>
+            Home
+          </a>
+          <a href="/how-to-play" className={styles.navlink}>
+            How to Play
+          </a>
+          <a href="/gameplay" className={styles.navlink}>
+            Play
+          </a>
         </nav>
       </div>
     </header>

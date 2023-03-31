@@ -4,26 +4,6 @@
   margin-top: 2rem;
 }
 
-.centerJustifiedContainer {
-  text-align: center;
-  padding: 1rem;
-  margin-top: 4rem;
-  margin-left: 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.leftJustifiedContainer {
-  text-align: left;
-  padding: 1rem;
-  margin-top: 4rem;
-  margin-left: 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
 .title {
   font-size: 3rem;
   margin-bottom: 1rem;
