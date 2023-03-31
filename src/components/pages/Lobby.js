@@ -1,5 +1,5 @@
 import React from "react";
-import { JustifiedContainer } from "./JustifiedContainer";
+import { JustifiedContainer } from "../JustifiedContainer";
 
 export const Lobby = () => {
   return (
