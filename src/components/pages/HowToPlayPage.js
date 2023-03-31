@@ -1,12 +1,11 @@
 import React from "react";
-import { Header } from "./Header";
-import { JustifiedContainer } from "./JustifiedContainer";
+import { Header } from "../Header";
+import { JustifiedContainer } from "../JustifiedContainer";
 
 export const HowToPlayPage = () => {
   return (
     <JustifiedContainer alignment={"left"}>
       <div>
-        <Header />
         <h1>How to Play</h1>
         <p>Welcome to Telephonish! Here's how to play:</p>
         <ol>

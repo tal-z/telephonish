@@ -1,5 +1,5 @@
-import { Lobby } from "../components/Lobby";
+import { CreateGame } from "../components/pages/CreateGame";
 
 export default function gameplay() {
-  return <Lobby />;
+  return <CreateGame />;
 }

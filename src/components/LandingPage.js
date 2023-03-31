@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import { Header } from "../components/Header";
+import styles from "../styles/LandingPage.module.css";
 import { JustifiedContainer } from "./JustifiedContainer";
 
 export const LandingPage = () => {
@@ -11,7 +10,6 @@ export const LandingPage = () => {
         <title>Telephonish - Play the Best Online Game Now</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header></Header>
 
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to Telephonish</h1>
