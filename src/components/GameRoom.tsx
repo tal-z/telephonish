@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PlayerList } from './PlayerList';
 import { PlayingField } from './PlayingField';
-import { HelpInstructions } from './HelpInstructions';
+import { Accordion } from './Accordion';
 import { InviteLink } from './InviteLink';
 import { JustifiedContainer } from "./JustifiedContainer";
 
@@ -37,7 +37,7 @@ const GameRoom = () => {
       />
       </div>
 
-      <HelpInstructions 
+      <Accordion 
         title={"How To Play"} 
         message={"sample instructions"} 
       />

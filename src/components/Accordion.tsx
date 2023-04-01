@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import styles from '../styles/HelpInstructions.module.css';
+import styles from '../styles/Accordion.module.css';
 
-type HelpInstructionsProps = {
+type AccordionProps = {
   title: string;
   message: string;
 };
 
-export const HelpInstructions = ({ title, message }: HelpInstructionsProps) => {
+export const Accordion = ({ title, message }: AccordionProps) => {
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpanded = () => {
