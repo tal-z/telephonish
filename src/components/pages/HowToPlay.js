@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "../Header";
 import { JustifiedContainer } from "../JustifiedContainer";
 
-export const HowToPlayPage = () => {
+export const HowToPlay = () => {
   return (
     <JustifiedContainer alignment={"left"}>
       <div>

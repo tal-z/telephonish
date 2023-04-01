@@ -1,5 +1,5 @@
 import { CreateRoom } from "../../components/pages/CreateRoom";
 
-export default function room() {
+export default function CreateRoomPage() {
   return <CreateRoom />;
 }

@@ -1,3 +1,3 @@
-export default function HowToPlay() {
+export default function GameRoomPage() {
   return <div>placeholder!</div>;
 }

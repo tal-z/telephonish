@@ -1,5 +1,5 @@
-import { HowToPlayPage } from "../components/pages/HowToPlayPage";
+import { HowToPlay } from "../components/pages/HowToPlay";
 
-export default function HowToPlay() {
-  return <HowToPlayPage />;
+export default function HowToPlayPage() {
+  return <HowToPlay />;
 }
