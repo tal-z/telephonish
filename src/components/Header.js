@@ -15,7 +15,7 @@ export const Header = () => {
           <a href="/how-to-play" className={styles.navlink}>
             How to Play
           </a>
-          <a href="/gameplay" className={styles.navlink}>
+          <a href="/room" className={styles.navlink}>
             Play
           </a>
         </nav>

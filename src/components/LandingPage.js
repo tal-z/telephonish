@@ -35,7 +35,7 @@ export const LandingPage = () => {
           <div className={styles.card}>
             <h2>Start Playing &rarr;</h2>
             <p>Ready to jump in? Start playing Telephonish now!</p>
-            <a href="/gameplay" className={styles.cardBtn}>
+            <a href="/room" className={styles.cardBtn}>
               Start Playing
             </a>
           </div>

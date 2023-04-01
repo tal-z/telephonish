@@ -1,11 +1,11 @@
 import React from "react";
 import { JustifiedContainer } from "../JustifiedContainer";
+import { RoomSubmit } from "../RoomSubmit";
 
-export const CreateGame = () => {
+export const CreateRoom = () => {
   return (
     <JustifiedContainer alignment={"left"}>
-      <input placeholder="Enter room name..." />
-      <button>Start Game</button>
+      <RoomSubmit />
     </JustifiedContainer>
   );
 };
