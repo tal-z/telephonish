@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/JustifiedContainer.module.css";
 import { Header } from "./Header";
 
-type Alignment = 'left' | 'center';
+type Alignment = "left" | "center";
 
 interface ContainerProps {
   alignment: Alignment;
