@@ -1,5 +1,5 @@
-import React from 'react';
-import { Player } from './PlayerList'
+import React from "react";
+import { Player } from "./PlayerList";
 import styles from "../styles/PlayingField.module.css";
 
 type PlayingFieldProps = {
@@ -12,7 +12,12 @@ type PlayingFieldProps = {
   }[];
 };
 
-export const PlayingField = ({ currentPrompt, currentFormat, timeRemaining, playerResponses }: PlayingFieldProps) => {
+export const PlayingField = ({
+  currentPrompt,
+  currentFormat,
+  timeRemaining,
+  playerResponses,
+}: PlayingFieldProps) => {
   return (
     <div className={styles.playingFieldContainer}>
       <h2>Current Prompt:</h2>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styles from '../styles/Accordion.module.css';
+import React, { useState } from "react";
+import styles from "../styles/Accordion.module.css";
 
 type AccordionProps = {
   title: string;
@@ -15,11 +15,20 @@ export const Accordion = ({ title, message }: AccordionProps) => {
 
   return (
     <div className={styles.accordionContainer}>
-      <div className={expanded ? styles.accordionHeaderOpen : styles.accordionHeaderClosed} onClick={toggleExpanded}>
-        <span className={`${styles.icon} ${expanded ? styles.iconOpen : ''}`}>{'+'}</span>
+      <div
+        className={
+          expanded ? styles.accordionHeaderOpen : styles.accordionHeaderClosed
+        }
+        onClick={toggleExpanded}
+      >
+        <span className={`${styles.icon} ${expanded ? styles.iconOpen : ""}`}>
+          {"+"}
+        </span>
         <span className={styles.title}>{title}</span>
       </div>
-      <div className={`${styles.content} ${expanded ? styles.contentOpen : ''}`}>
+      <div
+        className={`${styles.content} ${expanded ? styles.contentOpen : ""}`}
+      >
         <p className={styles.message}>{message}</p>
       </div>
     </div>

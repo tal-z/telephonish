@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 import styles from "../styles/PlayerList.module.css";
+
+import { PlayerListItem } from "./PlayerListItem";
 
 export type Player = {
   id: string;
   name: string;
-  score: number;
   isReady: boolean;
 };
 
@@ -16,14 +17,14 @@ export const PlayerList = ({ players }: PlayerListProps) => {
   return (
     <div className={styles.playerList}>
       <h3>Players:</h3>
-      <ul>
-        {players.map((player) => (
-          <li key={player.id} className={player.isReady ? styles.ready : ''}>
-            {player.name}
-            <span className={styles.score}>{player.score}</span>
-          </li>
-        ))}
-      </ul>
+      {players.map((player) => (
+        <PlayerListItem
+          key={player.id}
+          id={player.id}
+          name={player.name}
+          isReady={player.isReady}
+        />
+      ))}
     </div>
   );
 };

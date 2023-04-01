@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styles from "../styles/InviteLink.module.css";
 
 type InviteLinkProps = {
@@ -9,7 +9,9 @@ export const InviteLink = ({ link }: InviteLinkProps) => {
   return (
     <div className={styles.inputContainer}>
       <input type="text" value={link} readOnly />
-      <button onClick={() => navigator.clipboard.writeText(link)}>Copy Invite Link</button>
+      <button onClick={() => navigator.clipboard.writeText(link)}>
+        Copy Invite Link
+      </button>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { JustifiedContainer } from "./JustifiedContainer";
 
 export const LandingPage = () => {
   return (
-    <JustifiedContainer alignment={"center"}>
+    <JustifiedContainer alignment={"left"}>
       <Head>
         <title>Telephonish - Play Now!</title>
         <link rel="icon" href="/favicon.ico" />
