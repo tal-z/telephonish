@@ -1,0 +1,9 @@
+.playingFieldContainer {
+    display: inline-flex;
+    height:auto;
+    width: auto;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  }

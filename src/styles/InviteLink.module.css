@@ -1,0 +1,16 @@
+.inputContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .inputContainer input[type="text"],
+  .inputContainer button {
+    height: 40px;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.5;
+    box-sizing: border-box;
+  }
+  
