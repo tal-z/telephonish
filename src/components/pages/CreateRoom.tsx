@@ -5,7 +5,7 @@ import { RoomSubmit } from "../RoomSubmit";
 export const CreateRoom = () => {
   return (
     <JustifiedContainer alignment={"left"}>
-      <RoomSubmit />
+      <RoomSubmit endpoint="https://httpbin.org/post"/>
     </JustifiedContainer>
   );
 };
