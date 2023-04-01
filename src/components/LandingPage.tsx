@@ -7,7 +7,7 @@ export const LandingPage = () => {
   return (
     <JustifiedContainer alignment={"center"}>
       <Head>
-        <title>Telephonish - Play the Best Online Game Now</title>
+        <title>Telephonish - Play Now!</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
