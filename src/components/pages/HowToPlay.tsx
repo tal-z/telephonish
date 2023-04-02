@@ -1,10 +1,9 @@
 import React from "react";
 import { JustifiedContainer } from "../JustifiedContainer";
 
-export const HowToPlay = () => {
+export const Instructions = () => {
   return (
-    <JustifiedContainer alignment={"left"}>
-      <div>
+    <div>
         <h1>How to Play</h1>
         <p>Welcome to Telephonish! Here's how to play:</p>
         <ol>
@@ -39,6 +38,13 @@ export const HowToPlay = () => {
         </ol>
         <p>Have fun playing Telephonish!</p>
       </div>
+  );
+};
+
+export const HowToPlay = () => {
+  return (
+    <JustifiedContainer alignment={"left"}>
+      <Instructions/>      
     </JustifiedContainer>
   );
 };
