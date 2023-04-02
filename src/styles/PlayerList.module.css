@@ -1,5 +1,5 @@
 .playerList {
-  width: 170vw;
+  max-width:min-content;
   height: auto;
   display: block;
   background-color: #f5f5f5;
