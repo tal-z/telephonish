@@ -51,7 +51,6 @@ const GameRoom = () => {
     updateGameRoomURL();
   }, []);
 
-
   return (
     <JustifiedContainer alignment="left">
       <div className={styles.row}>
@@ -65,7 +64,7 @@ const GameRoom = () => {
       </div>
 
       <Accordion title={"How To Play"} message={null}>
-        <Instructions/>
+        <Instructions />
       </Accordion>
       <InviteLink link={gameRoomURL} />
     </JustifiedContainer>

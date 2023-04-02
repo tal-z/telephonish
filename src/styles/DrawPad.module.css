@@ -1,31 +1,31 @@
 .drawPadContainer {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  .toolbar {
-    display: flex;
-    flex-direction: column;
-    width: 10rem;
-    margin-top: 20px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
 
-  .toolbar button, .toolbar input {
-    margin-bottom: .5rem;
-  }
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
-  .drawPad {
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    margin-left: 10px;
-  }
-  
+.toolbar button,
+.toolbar input {
+  margin-bottom: 0.5rem;
+}
+
+.drawPad {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+}

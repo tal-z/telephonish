@@ -6,7 +6,7 @@ import styles from "../styles/DrawPad.module.css";
 const DrawPad: React.FC = () => {
   const [color, setColor] = useState("#000000");
   const [brushSize, setBrushSize] = useState(5);
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<CanvasDraw>(null);
 
   const handleColorChange = (newColor: string) => {
     setColor(newColor);
@@ -17,11 +17,11 @@ const DrawPad: React.FC = () => {
   };
 
   const handleUndo = () => {
-    canvasRef.current.undo();
+    canvasRef.current?.undo();
   };
 
   const handleClear = () => {
-    canvasRef.current.clear();
+    canvasRef.current?.clear();
   };
 
   return (
@@ -36,20 +36,7 @@ const DrawPad: React.FC = () => {
       />
       <div className={styles.toolbar}>
         <ColorPicker
-          colors={[
-            "#000000",
-            "#ffffff",
-            "#ff0000",
-            "#00ff00",
-            "#0000ff",
-            "#ffff00",
-            "#ff00ff",
-            "#00ffff",
-            "#800000",
-            "#008000",
-            "#000080",
-            "#808080",
-          ]}
+          colors={["#FF0000", "#FFA500", "#FFFF00", "#008000", "#0000FF", "#4B0082", "#EE82EE", "#FF69B4", "#00CED1", "#FFD700", "#8B4513", "#000000"]}
           selectedColor={color}
           onColorChange={handleColorChange}
           brushSize={brushSize}
