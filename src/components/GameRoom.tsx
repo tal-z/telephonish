@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PlayerList, Player } from "./PlayerList";
 import { PlayingField } from "./PlayingField";
 import { Accordion } from "./Accordion";
 import { InviteLink } from "./InviteLink";
 import { JustifiedContainer } from "./JustifiedContainer";
-
+import { Instructions } from "./pages/HowToPlay";
 import styles from "../styles/GameRoom.module.css";
 
 const GameRoom = () => {
@@ -42,6 +42,16 @@ const GameRoom = () => {
     },
   ];
 
+  const [gameRoomURL, setGameRoomURL] = useState("");
+  useEffect(() => {
+    const updateGameRoomURL = () => {
+      setGameRoomURL(window.location.href);
+    };
+
+    updateGameRoomURL();
+  }, []);
+
+
   return (
     <JustifiedContainer alignment="left">
       <div className={styles.row}>
@@ -54,8 +64,10 @@ const GameRoom = () => {
         />
       </div>
 
-      <Accordion title={"How To Play"} message={"sample instructions"} />
-      <InviteLink link={"http://sample.link"} />
+      <Accordion title={"How To Play"} message={null}>
+        <Instructions/>
+      </Accordion>
+      <InviteLink link={gameRoomURL} />
     </JustifiedContainer>
   );
 };
