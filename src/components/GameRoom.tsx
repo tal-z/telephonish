@@ -62,7 +62,6 @@ const GameRoom = () => {
           playerResponses={playerResponses}
         />
       </div>
-
       <Accordion title={"How To Play"} message={null}>
         <Instructions />
       </Accordion>
