@@ -1,12 +1,14 @@
 .playerList {
   max-width: min-content;
   height: auto;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
   background-color: #f5f5f5;
   padding: 0.5rem;
   border-radius: 10px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-  margin-right: 1rem;
 }
 
 .playerListItem {
