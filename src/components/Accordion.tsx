@@ -3,11 +3,10 @@ import styles from "../styles/Accordion.module.css";
 
 type AccordionProps = {
   title: string;
-  message: string | null;
   children: React.ReactNode;
 };
 
-export const Accordion = ({ title, message, children }: AccordionProps) => {
+export const Accordion = ({ title, children }: AccordionProps) => {
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpanded = () => {
@@ -30,7 +29,6 @@ export const Accordion = ({ title, message, children }: AccordionProps) => {
       <div
         className={`${styles.content} ${expanded ? styles.contentOpen : ""}`}
       >
-        <p className={styles.message}>{message}</p>
         {children}
       </div>
     </div>
