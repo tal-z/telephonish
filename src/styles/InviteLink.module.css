@@ -1,6 +1,7 @@
 .inputContainer {
   display: flex;
   align-items: center;
+  width: 91%;
 }
 
 .inputContainer input[type="text"],
@@ -8,8 +9,13 @@
   height: 40px;
   padding: 8px 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
   font-size: 16px;
   line-height: 1.5;
   box-sizing: border-box;
+  width: 100%;
+}
+
+.inputContainer input[type="text"] {
+  margin-right: 1rem;
 }
