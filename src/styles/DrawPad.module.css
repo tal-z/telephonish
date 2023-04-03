@@ -26,6 +26,10 @@
   background-color: #2ecc71;
 }
 
+.submitButton:hover {
+  background-color: #1e9957;
+}
+
 .drawPad {
   width: 50vw;
   height: 50vh;

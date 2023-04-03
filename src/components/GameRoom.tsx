@@ -32,16 +32,6 @@ const GameRoom = () => {
     setPlayers([...players, player]);
   };
 
-  const currentPrompt = "placeholder prompt";
-  const currentFormat = "placeholder Format";
-  const timeRemaining = 60;
-  const playerResponses = [
-    {
-      player: placeholderPlayer,
-      response: "placeholder",
-    },
-  ];
-
   const [gameRoomURL, setGameRoomURL] = useState("");
   useEffect(() => {
     const updateGameRoomURL = () => {
@@ -55,12 +45,7 @@ const GameRoom = () => {
     <JustifiedContainer alignment="left">
       <div className={styles.row}>
         <PlayerList players={players} />
-        <PlayingField
-          currentPrompt={currentPrompt}
-          currentFormat={currentFormat}
-          timeRemaining={timeRemaining}
-          playerResponses={playerResponses}
-        />
+        <PlayingField variant="writing"/>
       </div>
       <Accordion title={"How To Play"}>
         <Instructions />

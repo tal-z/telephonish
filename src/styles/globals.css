@@ -14,6 +14,10 @@ body {
   font-size: 18px;
 }
 
+textarea {
+  font-family: "Poppins", sans-serif;
+}
+
 a {
   color: #4c51bf;
   text-decoration: none;
