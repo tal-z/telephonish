@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import CanvasDraw from "react-canvas-draw";
 import ColorPicker from "./ColorPicker";
 import styles from "../styles/DrawPad.module.css";
+import axios from "axios";
 
 const DrawPad: React.FC = () => {
   const [color, setColor] = useState("#000000");
@@ -22,6 +23,18 @@ const DrawPad: React.FC = () => {
 
   const handleClear = () => {
     canvasRef.current?.clear();
+  };
+
+  const handleSubmit = () => {
+    const dataUrl = canvasRef.current?.getDataURL();
+    axios
+      .post("/submit-canvas", { dataUrl })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -53,9 +66,18 @@ const DrawPad: React.FC = () => {
           brushSize={brushSize}
           onBrushSizeChange={handleBrushSizeChange}
         />
-        <button onClick={handleUndo}>Undo</button>
-        <button onClick={handleClear}>Clear</button>
+        <button className={styles.actionButton} onClick={handleUndo}>
+          Undo
+        </button>
+        <button className={styles.actionButton} onClick={handleClear}>
+          Clear
+        </button>
       </div>
+      <button className={styles.submitButton} onClick={handleSubmit}>
+        Done
+        <br />
+        Drawing!
+      </button>
     </div>
   );
 };
