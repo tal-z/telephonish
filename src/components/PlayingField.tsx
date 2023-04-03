@@ -1,6 +1,8 @@
 import React from "react";
 import { Player } from "./PlayerList";
 import DrawPad from "./DrawPad";
+import WrittenPrompt from "./WrittenPrompt";
+
 import styles from "../styles/PlayingField.module.css";
 
 type PlayingFieldProps = {
@@ -21,6 +23,7 @@ export const PlayingField = ({
 }: PlayingFieldProps) => {
   return (
     <div className={styles.playingFieldContainer}>
+      <WrittenPrompt prompt={"Eat a banana"} />
       <DrawPad />
     </div>
   );
