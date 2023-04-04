@@ -45,7 +45,7 @@ const GameRoom = () => {
     <JustifiedContainer alignment="left">
       <div className={styles.row}>
         <PlayerList players={players} />
-        <PlayingField variant="writing"/>
+        <PlayingField variant="drawing"/>
       </div>
       <Accordion title={"How To Play"}>
         <Instructions />

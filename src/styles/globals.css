@@ -14,7 +14,7 @@ body {
 body {
   display: flex;
   flex-direction: column;
-  background-color: #f9f8fd;
+  background: linear-gradient(to bottom, #f1ff33 0%, #ff99cc 100%);
   font-family: 'Luckiest Guy', cursive;
   color: #333;
   line-height: 1.6;
@@ -38,6 +38,7 @@ a:hover {
 
 button {
   font-family: 'Luckiest Guy', cursive;
+
   background-color: #7e6aaf;
   color: #fff;
   font-weight: 700;

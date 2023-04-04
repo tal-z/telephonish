@@ -9,7 +9,7 @@ const WrittenPrompt: React.FC<WrittenPromptProps> = ({ prompt }) => {
   return (
     <div className={styles.promptCard}>
       Draw This Prompt:
-      <p className={styles.promptText}>{prompt}</p>
+      <div className={styles.promptText}>{prompt}</div>
     </div>
   );
 };
