@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Luckiest Guy';
+  src: url('/fonts/LuckiestGuy-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body {
   height: 100%;
@@ -8,27 +15,30 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #f9f8fd;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Luckiest Guy', cursive;
   color: #333;
   line-height: 1.6;
   font-size: 18px;
 }
 
-textarea {
-  font-family: "Poppins", sans-serif;
+textarea, input {
+  font-family: 'Luckiest Guy', cursive;
 }
 
 a {
-  color: #4c51bf;
+  color: #7e6aaf;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+  color: #a395d4;
+  transition: text-decoration 0.3s ease-out, color 0.3s ease-out;
 }
 
 button {
-  background-color: #4c51bf;
+  font-family: 'Luckiest Guy', cursive;
+  background-color: #7e6aaf;
   color: #fff;
   font-weight: 700;
   text-transform: uppercase;
@@ -41,5 +51,5 @@ button {
 }
 
 button:hover {
-  background-color: #434190;
+  background-color: #a395d4;
 }
