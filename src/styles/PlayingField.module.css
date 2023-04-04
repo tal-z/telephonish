@@ -1,11 +1,11 @@
-.playingFieldContainer {
+.playingFieldColumnContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
 }
 
-.playingFieldWritingContainer {
+.playingFieldRowContainer {
   display: flex;
   flex-direction: row;
-  width: 750px;
+  align-items: center;
 }

@@ -1,0 +1,47 @@
+ 
+  .countdownTimerWriting {
+    height: 6rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    margin-left: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .countdownTimerWriting > span {
+    font-size: 2em;
+    padding-left: .2rem;
+    padding-right: .2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .countdownTimerDrawing {
+    height: 6rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    margin-left: .5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    min-width: 7rem;
+  }
+  
+  .countdownTimerDrawing > span {
+    font-size: 2em;
+    padding-left: .2rem;
+    padding-right: .2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
