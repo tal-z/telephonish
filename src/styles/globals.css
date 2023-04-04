@@ -15,6 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   background: linear-gradient(to bottom, #f1ff33 0%, #ff99cc 100%);
+  background-attachment: fixed;
   font-family: 'Luckiest Guy', cursive;
   color: #333;
   line-height: 1.6;
