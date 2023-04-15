@@ -24,19 +24,14 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
       if (response.status === 201) {
         router.push(`/room/${roomName}`);
       } 
-    } catch (error) {
-        if (error.response.data.detail === 'room_already_exists') {
-          router.push('/error/room-already-exists');
-        }    
+    } catch (error: any) {
+      if (error.response && error.response.data.detail === 'room_already_exists') {
+        router.push('/error/room-already-exists');
+      } else {
         router.push('/error/unknown-error');
+      }    
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && isFocused) { // Only call handleSubmit if input is in focus
-      handleSubmit();
     }
   };
 
