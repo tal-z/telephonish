@@ -14,6 +14,12 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
   const [isFocused, setIsFocused] = useState(false); // Add new state variable
   const router = useRouter();
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && !loading && isFocused) {
+      handleSubmit();
+    }
+  };
+
   const handleSubmit = async () => {
     setLoading(true);
     try {
@@ -49,7 +55,7 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
         placeholder={"Enter room name..."}
         onFocus={() => setIsFocused(true)} // Add onFocus event listener
         onBlur={() => setIsFocused(false)} // Add onBlur event listener
-        onKeyPress={handleKeyPress} // Add event listener for key press
+        onKeyDown={handleKeyDown} // Add event listener for key press
       />
     </div>
   );
