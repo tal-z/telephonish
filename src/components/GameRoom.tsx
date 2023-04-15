@@ -42,7 +42,7 @@ const GameRoom = () => {
   }, []);
 
   return (
-    <JustifiedContainer alignment="left">
+    <JustifiedContainer alignment="center">
       <div className={styles.row}>
         <PlayerList players={players} />
         <PlayingField variant="writing"/>

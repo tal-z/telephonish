@@ -16,7 +16,7 @@ export const PlayingField = ({ variant = "drawing" }: PlayingFieldProps) => {
       <div className={styles.playingFieldColumnContainer}>
         <div className={styles.playingFieldRowContainer}>
         <WrittenPrompt prompt={"Eat a banana"} />
-        <div><CountdownTimer seconds={120} variant="drawing"/></div>
+        <CountdownTimer seconds={120} variant="drawing"/>
         </div>
         <DrawPad />
       </div>
@@ -29,9 +29,9 @@ export const PlayingField = ({ variant = "drawing" }: PlayingFieldProps) => {
       <div className={styles.playingFieldRowContainer}>
         <div className={styles.playingFieldColumnContainer}>
           <CountdownTimer seconds={120} variant="writing"/>
-          <WritePad endpoint="" placeholder="Describe this picture!"/>
+          <WritePad endpoint="" placeholder="Write a poem about this picture!"/>
         </div>
-        <ImageDisplay dataURL={placeholderURL2} alt="placeholder alt"/>
+        <ImageDisplay dataURL={placeholderURL2} alt=""/>
       </div>
     );
   }
