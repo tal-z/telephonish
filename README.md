@@ -9,6 +9,7 @@ To get started with Telephonish, head over to the [How to Play](/how-to-play) pa
 ## Technologies Used
 
 Telephonish is built using the following technologies:
+
 - React
 - Next.js
 

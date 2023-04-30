@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { JustifiedContainer } from "../JustifiedContainer";
 
 interface ErrorPageProps {
@@ -8,7 +8,7 @@ interface ErrorPageProps {
 
 export const Error = ({ header, message }: ErrorPageProps) => {
   return (
-    <JustifiedContainer alignment='center'>
+    <JustifiedContainer alignment="center">
       <h1>{header}</h1>
       <p>{message}</p>
     </JustifiedContainer>

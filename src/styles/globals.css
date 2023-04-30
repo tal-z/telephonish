@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'GochiHand';
-  src: url('/fonts/GochiHand-Regular.ttf');
+  font-family: "GochiHand";
+  src: url("/fonts/GochiHand-Regular.ttf");
   font-weight: normal;
   font-style: normal;
 }
@@ -16,14 +16,15 @@ body {
   flex-direction: column;
   background: linear-gradient(to bottom, #f1ff33 0%, #ff99cc 100%);
   background-attachment: fixed;
-  font-family: 'GochiHand', cursive;
+  font-family: "GochiHand", cursive;
   color: #333;
   line-height: 1.6;
   font-size: 18px;
 }
 
-textarea, input {
-  font-family: 'GochiHand', cursive;
+textarea,
+input {
+  font-family: "GochiHand", cursive;
 }
 
 a {
@@ -38,7 +39,7 @@ a:hover {
 }
 
 button {
-  font-family: 'GochiHand', cursive;
+  font-family: "GochiHand", cursive;
 
   background-color: #7e6aaf;
   color: #fff;

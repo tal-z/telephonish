@@ -3,7 +3,7 @@ import DrawPad from "./DrawPad";
 import WrittenPrompt from "./WrittenPrompt";
 import ImageDisplay from "./ImageDisplay";
 import { WritePad } from "./WritePad";
-import CountdownTimer from "./CountdownTimer"
+import CountdownTimer from "./CountdownTimer";
 import styles from "../styles/PlayingField.module.css";
 
 type PlayingFieldProps = {
@@ -15,8 +15,8 @@ export const PlayingField = ({ variant = "drawing" }: PlayingFieldProps) => {
     return (
       <div className={styles.playingFieldColumnContainer}>
         <div className={styles.playingFieldRowContainer}>
-        <WrittenPrompt prompt={"Eat a banana"} />
-        <CountdownTimer seconds={120} variant="drawing"/>
+          <WrittenPrompt prompt={"Eat a banana"} />
+          <CountdownTimer seconds={120} variant="drawing" />
         </div>
         <DrawPad />
       </div>
@@ -28,10 +28,13 @@ export const PlayingField = ({ variant = "drawing" }: PlayingFieldProps) => {
     return (
       <div className={styles.playingFieldRowContainer}>
         <div className={styles.playingFieldColumnContainer}>
-          <CountdownTimer seconds={120} variant="writing"/>
-          <WritePad endpoint="" placeholder="Write a poem about this picture!"/>
+          <CountdownTimer seconds={120} variant="writing" />
+          <WritePad
+            endpoint=""
+            placeholder="Write a poem about this picture!"
+          />
         </div>
-        <ImageDisplay dataURL={placeholderURL2} alt=""/>
+        <ImageDisplay dataURL={placeholderURL2} alt="" />
       </div>
     );
   }

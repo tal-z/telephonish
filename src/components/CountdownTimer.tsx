@@ -4,12 +4,15 @@ import styles from "../styles/CountdownTimer.module.css";
 type CountdownTimerProps = {
   seconds: number;
   variant?: string;
-}
+};
 
 const CountdownTimer = ({ seconds, variant }: CountdownTimerProps) => {
   const [timeLeft, setTimeLeft] = useState(seconds);
 
-  const timerVariant = variant === "drawing" ? styles.countdownTimerDrawing : styles.countdownTimerWriting;
+  const timerVariant =
+    variant === "drawing"
+      ? styles.countdownTimerDrawing
+      : styles.countdownTimerWriting;
 
   useEffect(() => {
     if (!timeLeft) return;
@@ -25,10 +28,12 @@ const CountdownTimer = ({ seconds, variant }: CountdownTimerProps) => {
   const remainingSeconds = timeLeft % 60;
 
   return (
-      <div className={timerVariant}>
-        <span>{minutes < 10 ? `0${minutes}` : minutes}</span>:
-        <span>{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}</span>
-      </div>
+    <div className={timerVariant}>
+      <span>{minutes < 10 ? `0${minutes}` : minutes}</span>:
+      <span>
+        {remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
+      </span>
+    </div>
   );
 };
 

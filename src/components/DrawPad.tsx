@@ -27,11 +27,9 @@ const DrawPad: React.FC = () => {
 
   const handleSubmit = () => {
     const dataUrl = canvasRef.current?.getDataURL();
-    axios
-      .post("/submit-canvas", { dataUrl })
-      .catch((error) => {
-        console.error(error);
-      });
+    axios.post("/submit-canvas", { dataUrl }).catch((error) => {
+      console.error(error);
+    });
   };
 
   return (
