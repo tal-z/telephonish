@@ -27,18 +27,60 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
     poem: false,
     dramaticReading: false,
   });
+  const [showValidation, setShowValidation] = useState(false);
+
+  const isCheckboxValid = Object.values(checkboxState).some(Boolean);
+  const isRoomNameValid = roomName !== "";
+
+  const handleRoomNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setRoomName(event.target.value);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && !loading && isFocused) {
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      if (!isCheckboxValid || !isRoomNameValid) {
+        setShowValidation(true);
+        return;
+      }
+      const response = await axios.post(endpoint, {
+        room_name: roomName,
+        selected_values: checkboxState,
+      });
+
+      if (response.status === 201) {
+        router.push(`/room/${roomName}/lobby`);
+      }
+    } catch (error: any) {
+      if (
+        error.response &&
+        error.response.data.detail === "room_already_exists"
+      ) {
+        router.push("/error/room-already-exists");
+      } else {
+        router.push("/error/unknown-error");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   function CheckboxComponent() {
     const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
-      console.log(event.target);
       setCheckboxState({
         ...checkboxState,
         [event.target.name]: event.target.checked,
-      });
+      });  
     };
 
     return (
-      <div>
+      <div className={styles.checkboxContainer}>
         <label className={styles.checkboxLabel}>
           <input
             type="checkbox"
@@ -47,7 +89,7 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
             onChange={handleCheckboxChange}
             className={styles.checkboxInput}
           />
-          <span className={styles.checkboxText}>📇One-Sentence Story</span>
+          <span className={styles.checkboxText}>📇 One-Sentence Story</span>
         </label>
         <br />
         <label className={styles.checkboxLabel}>
@@ -86,56 +128,28 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
     );
   }
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && !loading && isFocused) {
-      handleSubmit();
-    }
-  };
-
-  const handleSubmit = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.post(endpoint, {
-        room_name: roomName,
-        selected_values: checkboxState,
-      });
-
-      if (response.status === 201) {
-        router.push(`/room/${roomName}`);
-      }
-    } catch (error: any) {
-      if (
-        error.response &&
-        error.response.data.detail === "room_already_exists"
-      ) {
-        router.push("/error/room-already-exists");
-      } else {
-        router.push("/error/unknown-error");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div>
       <h2>Choose Gameplay Types</h2>
       <CheckboxComponent />
-      <h2>Select a Room Name!</h2>
+      <h2>Enter a Room Name</h2>
       <div className={styles.inputContainer}>
         <input
           type="text"
           value={roomName}
-          onChange={(e) => setRoomName(e.target.value)}
+          onChange={handleRoomNameChange}
           placeholder={"Enter room name..."}
           onFocus={() => setIsFocused(true)} // Add onFocus event listener
           onBlur={() => setIsFocused(false)} // Add onBlur event listener
           onKeyDown={handleKeyDown} // Add event listener for key press
         />
+        <h2>Create Room!</h2>
         <button onClick={handleSubmit} disabled={loading}>
           {loading ? "Loading..." : "Submit"}
         </button>
       </div>
+      {showValidation && !isCheckboxValid && <div className={styles.error}>Please select at least one checkbox</div>}
+      {showValidation && !isRoomNameValid && <div className={styles.error}>Please enter a room name</div>}
     </div>
   );
 };
@@ -145,6 +159,7 @@ export const CreateRoom = () => {
 
   return (
     <JustifiedContainer alignment={"left"}>
+      <h1>Create a Room!</h1>
       <RoomSubmit endpoint={createRoomEndpoint} />
     </JustifiedContainer>
   );
