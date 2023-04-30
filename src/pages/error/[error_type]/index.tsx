@@ -8,7 +8,6 @@ const ErrorPage = () => {
       const updateErrorTypeFromURL = () => {
         const pathname = window.location.pathname;
         const errorType = pathname.replace('/error/', '')
-        console.log(errorType);
         setErrorTypeFromURL(errorType);
       };
     
