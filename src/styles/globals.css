@@ -55,3 +55,7 @@ button {
 button:hover {
   background-color: #a395d4;
 }
+
+h2 {
+  margin-bottom: 0.1rem;
+}
