@@ -60,3 +60,24 @@ button:hover {
 h2 {
   margin-bottom: 0.1rem;
 }
+
+
+input[type="checkbox"] {
+  appearance: none; /* remove default checkbox appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10px;
+  border: 1px solid #999;
+  outline: none;
+  background-color: #fff;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #a395d4;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2"><path d="M3 3L13 13M13 3L3 13"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+}

@@ -10,10 +10,10 @@ interface RoomSubmitProps {
 }
 
 interface CheckboxState {
-  checkbox1: boolean;
-  checkbox2: boolean;
-  checkbox3: boolean;
-  checkbox4: boolean;
+  oneSentenceStory: boolean;
+  drawing: boolean;
+  poem: boolean;
+  dramaticReading: boolean;
 }
 
 export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
@@ -22,14 +22,15 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
   const [isFocused, setIsFocused] = useState(false); // Add new state variable
   const router = useRouter();
   const [checkboxState, setCheckboxState] = useState<CheckboxState>({
-    checkbox1: false,
-    checkbox2: false,
-    checkbox3: false,
-    checkbox4: false,
+    oneSentenceStory: false,
+    drawing: false,
+    poem: false,
+    dramaticReading: false,
   });
 
   function CheckboxComponent() {
     const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+      console.log(event.target);
       setCheckboxState({
         ...checkboxState,
         [event.target.name]: event.target.checked,
@@ -41,45 +42,45 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
         <label className={styles.checkboxLabel}>
           <input
             type="checkbox"
-            name="checkbox1"
-            checked={checkboxState.checkbox1}
+            name="oneSentenceStory"
+            checked={checkboxState.oneSentenceStory}
             onChange={handleCheckboxChange}
             className={styles.checkboxInput}
           />
-          <span className={styles.checkboxText}>Checkbox 1</span>
+          <span className={styles.checkboxText}>📇One-Sentence Story</span>
         </label>
         <br />
         <label className={styles.checkboxLabel}>
           <input
             type="checkbox"
-            name="checkbox2"
-            checked={checkboxState.checkbox2}
+            name="drawing"
+            checked={checkboxState.drawing}
             onChange={handleCheckboxChange}
             className={styles.checkboxInput}
           />
-          <span className={styles.checkboxText}>Checkbox 2</span>
+          <span className={styles.checkboxText}>✏️ Drawing</span>
         </label>
         <br />
         <label className={styles.checkboxLabel}>
           <input
             type="checkbox"
-            name="checkbox3"
-            checked={checkboxState.checkbox3}
+            name="poem"
+            checked={checkboxState.poem}
             onChange={handleCheckboxChange}
             className={styles.checkboxInput}
           />
-          <span className={styles.checkboxText}>Checkbox 3</span>
+          <span className={styles.checkboxText}>📜 Poem</span>
         </label>
         <br />
         <label className={styles.checkboxLabel}>
           <input
             type="checkbox"
-            name="checkbox4"
-            checked={checkboxState.checkbox4}
+            name="dramaticReading"
+            checked={checkboxState.dramaticReading}
             onChange={handleCheckboxChange}
             className={styles.checkboxInput}
           />
-          <span className={styles.checkboxText}>Checkbox 4</span>
+          <span className={styles.checkboxText}>🎤 Dramatic Reading</span>
         </label>
       </div>
     );
