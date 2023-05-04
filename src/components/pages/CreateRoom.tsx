@@ -16,6 +16,7 @@ interface CheckboxState {
   dramaticReading: boolean;
 }
 
+
 export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
   const [roomName, setRoomName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,10 +28,15 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
     poem: false,
     dramaticReading: false,
   });
+  const [password, setPassword] = useState("");
   const [showValidation, setShowValidation] = useState(false);
 
   const isCheckboxValid = Object.values(checkboxState).some(Boolean);
   const isRoomNameValid = roomName !== "";
+
+  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
 
   const handleRoomNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setRoomName(event.target.value);
@@ -52,6 +58,7 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
       const response = await axios.post(endpoint, {
         room_name: roomName,
         selected_values: checkboxState,
+        password: password,
       });
 
       if (response.status === 201) {
@@ -71,6 +78,7 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
     }
   };
 
+
   function CheckboxComponent() {
     const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
       setCheckboxState({
@@ -81,6 +89,7 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
 
     return (
       <div className={styles.checkboxContainer}>
+        <h2>Choose Gameplay Types</h2>
         <label className={styles.checkboxLabel}>
           <input
             type="checkbox"
@@ -130,7 +139,6 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
 
   return (
     <div>
-      <h2>Choose Gameplay Types</h2>
       <CheckboxComponent />
       <h2>Enter a Room Name</h2>
       <div className={styles.inputContainer}>
@@ -143,7 +151,15 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
           onBlur={() => setIsFocused(false)} // Add onBlur event listener
           onKeyDown={handleKeyDown} // Add event listener for key press
         />
-        <h2>Create Room!</h2>
+        <h2>Enter a Password (optional)</h2>
+        <div className={styles.inputContainer}>
+          <input
+            type="password"
+            value={password}
+            onChange={handlePasswordChange}
+            placeholder={"Enter password..."}
+          />
+        </div>        <h2>Create Room!</h2>
         <button onClick={handleSubmit} disabled={loading}>
           {loading ? "Loading..." : "Submit"}
         </button>
