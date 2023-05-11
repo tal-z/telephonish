@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/WrittenPrompt.module.css";
+import styles from "../../styles/WrittenPrompt.module.css";
 
 interface WrittenPromptProps {
   prompt: string;

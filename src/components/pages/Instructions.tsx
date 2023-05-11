@@ -1,7 +1,8 @@
 import React from "react";
 import { JustifiedContainer } from "../JustifiedContainer";
 
-export const Instructions = () => {
+export const InstructionText = () => {
+
   return (
     <div>
       <h1>How to Play</h1>
@@ -38,13 +39,14 @@ export const Instructions = () => {
       </ol>
       <p>Have fun playing Telephonish!</p>
     </div>
-  );
+  )
 };
 
-export const HowToPlay = () => {
+
+export const Instructions = () => {
   return (
     <JustifiedContainer alignment={"left"}>
-      <Instructions />
+      <InstructionText />
     </JustifiedContainer>
   );
 };

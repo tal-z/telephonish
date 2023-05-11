@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles/CountdownTimer.module.css";
+import styles from "../../styles/CountdownTimer.module.css";
 
 type CountdownTimerProps = {
   seconds: number;

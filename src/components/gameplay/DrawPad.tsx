@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import CanvasDraw from "react-canvas-draw";
 import ColorPicker from "./ColorPicker";
-import styles from "../styles/DrawPad.module.css";
+import styles from "../../styles/DrawPad.module.css";
 import axios from "axios";
 
 const DrawPad: React.FC = () => {

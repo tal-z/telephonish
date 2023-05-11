@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../styles/ImageDisplay.module.css";
+import style from "../../styles/ImageDisplay.module.css";
 interface ImageDisplayProps {
   dataURL: string;
   alt: string;

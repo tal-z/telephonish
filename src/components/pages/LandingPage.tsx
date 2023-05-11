@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import styles from "../styles/LandingPage.module.css";
-import { JustifiedContainer } from "./JustifiedContainer";
+import styles from "../../styles/LandingPage.module.css";
+import { JustifiedContainer } from "../JustifiedContainer";
 
 export const LandingPage = () => {
   return (
@@ -27,7 +27,7 @@ export const LandingPage = () => {
             <p>
               Learn how to play Telephonish and get started on your first game!
             </p>
-            <a href="/how-to-play" className={styles.cardBtn}>
+            <a href="/instructions" className={styles.cardBtn}>
               Learn More
             </a>
           </div>
@@ -35,7 +35,7 @@ export const LandingPage = () => {
           <div className={styles.card}>
             <h2>Start Playing &rarr;</h2>
             <p>Ready to jump in? Start playing Telephonish now!</p>
-            <a href="/room" className={styles.cardBtn}>
+            <a href="/game/new" className={styles.cardBtn}>
               Start Playing
             </a>
           </div>

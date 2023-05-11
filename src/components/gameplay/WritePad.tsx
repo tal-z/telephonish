@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import styles from "../styles/WritePad.module.css";
+import styles from "../../styles/WritePad.module.css";
 import "text-encoding";
 
 interface RoomSubmitProps {

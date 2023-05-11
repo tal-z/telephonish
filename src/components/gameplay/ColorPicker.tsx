@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/ColorPicker.module.css";
+import styles from "../../styles/ColorPicker.module.css";
 
 interface ColorPickerProps {
   colors: string[];

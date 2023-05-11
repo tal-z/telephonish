@@ -12,10 +12,10 @@ export const Header = () => {
           <a href="/" className={styles.navlink}>
             Home
           </a>
-          <a href="/how-to-play" className={styles.navlink}>
+          <a href="/instructions" className={styles.navlink}>
             How to Play
           </a>
-          <a href="/room" className={styles.navlink}>
+          <a href="/game/new" className={styles.navlink}>
             Play
           </a>
         </nav>

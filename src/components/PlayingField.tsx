@@ -1,16 +1,26 @@
 import React from "react";
-import DrawPad from "./DrawPad";
-import WrittenPrompt from "./WrittenPrompt";
-import ImageDisplay from "./ImageDisplay";
-import { WritePad } from "./WritePad";
-import CountdownTimer from "./CountdownTimer";
+import DrawPad from "./gameplay/DrawPad";
+import WrittenPrompt from "./gameplay/WrittenPrompt";
+import ImageDisplay from "./gameplay/ImageDisplay";
+import { WritePad } from "./gameplay/WritePad";
+import { Lobby } from "./gameplay/Lobby";
+import CountdownTimer from "./gameplay/CountdownTimer";
 import styles from "../styles/PlayingField.module.css";
 
 type PlayingFieldProps = {
   variant?: string;
+  gameData: any;
 };
 
-export const PlayingField = ({ variant = "drawing" }: PlayingFieldProps) => {
+export const PlayingField = ({ variant, gameData }: PlayingFieldProps) => {
+  if (variant === "lobby") {
+    return (
+      <div className={styles.playingFieldColumnContainer}>
+          <Lobby gameData={gameData}/>
+      </div>
+    );
+  }
+
   if (variant === "drawing") {
     return (
       <div className={styles.playingFieldColumnContainer}>

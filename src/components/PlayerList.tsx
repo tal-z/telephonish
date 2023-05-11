@@ -6,7 +6,6 @@ import { PlayerListItem } from "./PlayerListItem";
 export type Player = {
   id: string;
   name: string;
-  isReady: boolean;
 };
 
 type PlayerListProps = {
@@ -17,14 +16,13 @@ export const PlayerList = ({ players }: PlayerListProps) => {
   return (
     <div className={styles.playerList}>
       <h2>Players</h2>
-      {players.map((player) => (
-        <PlayerListItem
-          key={player.id}
-          id={player.id}
-          name={player.name}
-          isReady={player.isReady}
-        />
-      ))}
+        {players.map((player) => (
+          <PlayerListItem
+            key={player.id}
+            id={player.id}
+            name={player.name}
+          />
+        ))}
     </div>
   );
 };

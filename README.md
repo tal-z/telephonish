@@ -4,7 +4,7 @@ Telephonish is a modern twist on the classic game of Telephone, where players wh
 
 ## How to Play
 
-To get started with Telephonish, head over to the [How to Play](/how-to-play) page to learn the rules and get some tips on how to win. Once you're ready to play, simply click on the "Play" button in the header to start a new game.
+To get started with Telephonish, head over to the [How to Play](/instructions) page to learn the rules and get some tips on how to win. Once you're ready to play, simply click on the "Play" button in the header to start a new game.
 
 ## Technologies Used
 
