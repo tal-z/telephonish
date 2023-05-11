@@ -81,12 +81,6 @@ const GameRoom = () => {
       setGameRoomURL(window.location.href);
     };
 
-
-
-
-
-
-    
     fetchGameData();
     updateGameRoomURL();
     handleConnect();

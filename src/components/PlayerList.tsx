@@ -15,7 +15,8 @@ type PlayerListProps = {
 export const PlayerList = ({ players }: PlayerListProps) => {
   return (
     <div className={styles.playerList}>
-      <h2>Players</h2>
+            <h2>Players</h2>
+      <div className={styles.playerListInner}>
         {players.map((player) => (
           <PlayerListItem
             key={player.id}
@@ -23,6 +24,7 @@ export const PlayerList = ({ players }: PlayerListProps) => {
             name={player.name}
           />
         ))}
+      </div>
     </div>
   );
 };

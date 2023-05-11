@@ -43,6 +43,7 @@ const JoinGame = () => {
     // Send message to WebSocket
   };
 
+
   return (
     <div>
       <label>
