@@ -16,7 +16,7 @@ export const PlayingField = ({ variant, gameData }: PlayingFieldProps) => {
   if (variant === "lobby") {
     return (
       <div className={styles.playingFieldColumnContainer}>
-          <Lobby gameData={gameData}/>
+        <Lobby gameData={gameData} />
       </div>
     );
   }

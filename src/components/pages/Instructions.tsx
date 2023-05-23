@@ -2,7 +2,6 @@ import React from "react";
 import { JustifiedContainer } from "../JustifiedContainer";
 
 export const InstructionText = () => {
-
   return (
     <div>
       <h1>How to Play</h1>
@@ -39,9 +38,8 @@ export const InstructionText = () => {
       </ol>
       <p>Have fun playing Telephonish!</p>
     </div>
-  )
+  );
 };
-
 
 export const Instructions = () => {
   return (

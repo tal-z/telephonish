@@ -14,7 +14,9 @@ export const InviteLink = ({ link }: InviteLinkProps) => {
     setTimeout(() => setIsFlashing(false), 500); // Remove the flashing effect after 0.5 seconds (adjust as needed)
   };
 
-  const inputClassName = isFlashing ? `${styles.textInput} ${styles.flashAnimation}` : styles.textInput;
+  const inputClassName = isFlashing
+    ? `${styles.textInput} ${styles.flashAnimation}`
+    : styles.textInput;
 
   return (
     <div className={styles.inputContainer}>

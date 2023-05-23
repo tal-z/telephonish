@@ -5,10 +5,6 @@ import axios from "axios";
 import "text-encoding";
 import { useRouter } from "next/router";
 
-interface RoomSubmitProps {
-  endpoint: string;
-}
-
 interface CheckboxState {
   oneSentenceStory: boolean;
   drawing: boolean;
@@ -16,8 +12,7 @@ interface CheckboxState {
   dramaticReading: boolean;
 }
 
-
-export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
+export const RoomSubmit = () => {
   const [roomName, setRoomName] = useState("");
   const [playerName, setPlayerName] = useState("");
 
@@ -56,24 +51,36 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
   };
 
   const handleSubmit = async () => {
+    const createRoomEndpoint = "http://127.0.0.1:8000/game/create-room/";
+    const joinRoomEndpoint = "http://127.0.0.1:8000/game/join-room/";
+
     setLoading(true);
     try {
       if (!isCheckboxValid || !isRoomNameValid || !isPlayerNameValid) {
         setShowValidation(true);
         return;
       }
-      const response = await axios.post(endpoint, {
+      const createRoomResponse = await axios.post(createRoomEndpoint, {
         room_name: roomName,
         player_name: playerName,
         selected_values: checkboxState,
         password: password,
       });
 
-      if (response.status === 201) {
-        router.push({
-          pathname: `/game/play/${roomName}`,
-          query: { roomName: roomName, playerName: playerName }
-        }, `/game/play/${roomName}`);
+      if (createRoomResponse.status === 201) {
+        const roomId = createRoomResponse.data.id;
+        router.push(
+          {
+            pathname: `/game/play/${roomName}`,
+            query: {
+              roomName: roomName,
+              roomId: roomId,
+              playerName: playerName,
+              password: password,
+            },
+          },
+          `/game/play/${roomName}`
+        );
       }
     } catch (error: any) {
       if (
@@ -89,13 +96,12 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
     }
   };
 
-
   function CheckboxComponent() {
     const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
       setCheckboxState({
         ...checkboxState,
         [event.target.name]: event.target.checked,
-      });  
+      });
     };
 
     return (
@@ -163,20 +169,19 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
           onBlur={() => setIsFocused(false)}
           onKeyDown={handleKeyDown}
         />
-        </div>
-       
+      </div>
 
-        <h2>Game Room Password (optional)</h2>
-        <div className={styles.inputContainer}>
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            placeholder={"Enter game room password (if you wish)..."}
-          />
-        </div>        
+      <h2>Game Room Password (optional)</h2>
+      <div className={styles.inputContainer}>
+        <input
+          type="password"
+          value={password}
+          onChange={handlePasswordChange}
+          placeholder={"Enter game room password (if you wish)..."}
+        />
+      </div>
 
-        <h2>Enter a Player Name</h2>
+      <h2>Enter a Player Name</h2>
       <div className={styles.inputContainer}>
         <input
           type="text"
@@ -187,25 +192,31 @@ export const RoomSubmit = ({ endpoint }: RoomSubmitProps) => {
           onBlur={() => setIsFocused(false)}
           onKeyDown={handleKeyDown}
         />
+      </div>
+
+      <h2>Create Room!</h2>
+      <button onClick={handleSubmit} disabled={loading}>
+        {loading ? "Loading..." : "Submit"}
+      </button>
+      {showValidation && !isCheckboxValid && (
+        <div className={styles.error}>Please select at least one checkbox</div>
+      )}
+      {showValidation && !isRoomNameValid && (
+        <div className={styles.error}>Please enter a room name</div>
+      )}
+      {showValidation && !isPlayerNameValid && (
+        <div className={styles.error}>
+          Please enter a player name between 1-20 characters long
         </div>
-        
-        <h2>Create Room!</h2>
-        <button onClick={handleSubmit} disabled={loading}>
-          {loading ? "Loading..." : "Submit"}
-        </button>
-      {showValidation && !isCheckboxValid && <div className={styles.error}>Please select at least one checkbox</div>}
-      {showValidation && !isRoomNameValid && <div className={styles.error}>Please enter a room name</div>}
-      {showValidation && !isPlayerNameValid && <div className={styles.error}>Please enter a player name between 1-20 characters long</div>}
+      )}
     </div>
   );
 };
 
 export const NewGame = () => {
-  const createRoomEndpoint = "http://127.0.0.1:8000/game/create-room/";
-
   return (
     <JustifiedContainer alignment={"left"}>
-      <RoomSubmit endpoint={createRoomEndpoint} />
+      <RoomSubmit />
     </JustifiedContainer>
   );
 };

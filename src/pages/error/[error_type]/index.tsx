@@ -18,6 +18,12 @@ const ErrorPage = () => {
     case "room-already-exists":
       errorMessage = "The room you attempted to create already exists.";
       break;
+    case "room-not-found":
+      errorMessage = "We couldn't find the room you attempted to join.";
+      break;
+    case "unable-to-connect":
+      errorMessage = "We couldn't connect you the room you attempted to join. Please check your password and try again.";
+      break;
   }
 
   return (

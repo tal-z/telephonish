@@ -1,6 +1,5 @@
-import React from 'react';
-import JoinGame from "../../../../components/pages/JoinGame";
-
+import React from "react";
+import { JoinGame } from "../../../../components/pages/JoinGame";
 
 const JoinGamePage = () => {
   return (
