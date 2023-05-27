@@ -38,9 +38,8 @@ const GameRoom = () => {
     ws.onerror = (error) => {
       console.error("WebSocket error:", error);
       if (error && error.target && error.target.readyState === WebSocket.CLOSED) {
-        // WebSocket connection closed, handle error here
+        // WebSocket connection closed
         console.log("WebSocket handshake error");
-        //router.push("/error/unable-to-connect");
       }
     };
   
@@ -58,6 +57,17 @@ const GameRoom = () => {
       if (data.type === "player_disconnect") {
         // Re-request game room data and update player list
         fetchGameData();
+      }
+      if (data.type === 'player_token') {
+        const playerToken = data.token;
+        console.log("token", playerToken);
+      }
+      if (data.type === 'connection_closed') {
+        if (data.message === 'invalid_room_password') {
+          router.push('/error/unable-to-connect')
+        } else {
+          router.push("/error/unknown-error");
+        }
       }
     };
   };
