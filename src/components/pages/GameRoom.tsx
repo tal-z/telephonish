@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { PlayerList } from "../PlayerList";
 import { PlayingField } from "../PlayingField";
 import { Accordion } from "../Accordion";
@@ -11,10 +11,11 @@ import axios from "axios";
 
 const GameRoom = () => {
   const [players, setPlayers] = useState({});
+  const [playingFieldVariant, setPlayingFieldVariant] = useState("lobby");
   const [gameData, setGameData] = useState(null);
   const [gameRoomURL, setGameRoomURL] = useState("");
   const [isConnected, setIsConnected] = useState(false);
-
+  const [playerToken, setPlayerToken] = useState(null);
   const router = useRouter();
 
   const roomName = router.query.roomName;
@@ -22,20 +23,20 @@ const GameRoom = () => {
   const playerName = router.query.playerName;
   const roomPassword = router.query.password;
 
-  let ws = null;
+  const ws = useRef(null);
 
   const connectToWebSocket = () => {
     const wsProtocol = window.location.protocol === "https:" ? "wss://" : "ws://";
     const wsUrl = `${wsProtocol}127.0.0.1:8000/ws/game/${roomId}/${playerName}${roomPassword ? `/${roomPassword}` : ''}/`;
     
-    ws = new WebSocket(wsUrl);
+    ws.current = new WebSocket(wsUrl);
   
-    ws.onopen = () => {
+    ws.current.onopen = () => {
       console.log("Connected to WebSocket");
       setIsConnected(true);
     };
   
-    ws.onerror = (error) => {
+    ws.current.onerror = (error) => {
       console.error("WebSocket error:", error);
       if (error && error.target && error.target.readyState === WebSocket.CLOSED) {
         // WebSocket connection closed
@@ -43,12 +44,12 @@ const GameRoom = () => {
       }
     };
   
-    ws.onclose = (event) => {
+    ws.current.onclose = (event) => {
       console.log("Disconnected from WebSocket");
       setIsConnected(false);
     };
   
-    ws.onmessage = (event) => {
+    ws.current.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === "player_connect") {
         // Re-request game room data and update player list
@@ -59,8 +60,7 @@ const GameRoom = () => {
         fetchGameData();
       }
       if (data.type === 'player_token') {
-        const playerToken = data.token;
-        console.log("token", playerToken);
+        setPlayerToken(data.token);
       }
       if (data.type === 'connection_closed') {
         if (data.message === 'invalid_room_password') {
@@ -68,6 +68,10 @@ const GameRoom = () => {
         } else {
           router.push("/error/unknown-error");
         }
+      }
+      if (data.type === 'ready_to_start') {
+        console.log(data);
+        setPlayingFieldVariant('drawing');
       }
     };
   };
@@ -79,14 +83,23 @@ const GameRoom = () => {
 
   const handleDisconnect = () => {
     if (ws) {
-      ws.close();
+      ws.current.close();
     }
   };
 
   const handleSend = (message) => {
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send(JSON.stringify(message));
+    if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+      ws.current.send(JSON.stringify({...message, player_token: playerToken}));
     }
+  };
+  
+  const handleReadyToStart = () => {
+    const message = {
+      type: 'ready_to_start',
+      message: 'ready_to_start',
+      // Add any additional data you want to send with the message
+    };
+    handleSend(message);
   };
 
   const fetchGameData = async () => {
@@ -102,6 +115,7 @@ const GameRoom = () => {
       console.error(error);
     }
   };
+
 
   useEffect(() => {
     fetchGameData();
@@ -130,7 +144,11 @@ const GameRoom = () => {
       <h2>Now Playing: {roomName}</h2>
       <div className={styles.row}>
         <PlayerList players={players} />
-        <PlayingField gameData={gameData} variant="lobby" />
+        <PlayingField 
+          gameData={gameData} 
+          variant={playingFieldVariant}   
+          onReadyToStart={handleReadyToStart}
+ />
       </div>
       <Accordion title={"How To Play"}>
         <InstructionText />

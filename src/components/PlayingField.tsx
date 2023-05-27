@@ -10,13 +10,14 @@ import styles from "../styles/PlayingField.module.css";
 type PlayingFieldProps = {
   variant?: string;
   gameData: any;
+  onReadyToStart: () => void;
 };
 
-export const PlayingField = ({ variant, gameData }: PlayingFieldProps) => {
+export const PlayingField = ({ variant, gameData, onReadyToStart}: PlayingFieldProps) => {
   if (variant === "lobby") {
     return (
       <div className={styles.playingFieldColumnContainer}>
-        <Lobby gameData={gameData} />
+        <Lobby gameData={gameData} onReadyToStart={onReadyToStart}/>
       </div>
     );
   }

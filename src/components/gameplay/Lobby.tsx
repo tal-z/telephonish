@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/Lobby.module.css";
 
-export const Lobby = ({ gameData }) => {
+export const Lobby = ({ gameData, onReadyToStart }) => {
   return (
     <div className={styles.gameInfo}>
       {gameData && (
@@ -20,7 +20,12 @@ export const Lobby = ({ gameData }) => {
           </ul>
         </div>
       )}
-      <button className={styles.startGameButton}>Ready to Start!</button>
+      <button
+        className={styles.startGameButton}
+        onClick={onReadyToStart}
+      >
+        Ready to Start!
+      </button>
     </div>
   );
 };
