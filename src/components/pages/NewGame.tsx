@@ -2,7 +2,6 @@ import React, { useState, ChangeEvent } from "react";
 import { JustifiedContainer } from "../JustifiedContainer";
 import styles from "../../styles/CreateRoom.module.css";
 import axios from "axios";
-import "text-encoding";
 import { useRouter } from "next/router";
 
 interface CheckboxState {
@@ -52,7 +51,6 @@ export const RoomSubmit = () => {
 
   const handleSubmit = async () => {
     const createRoomEndpoint = "http://127.0.0.1:8000/game/create-room/";
-    const joinRoomEndpoint = "http://127.0.0.1:8000/game/join-room/";
 
     setLoading(true);
     try {
