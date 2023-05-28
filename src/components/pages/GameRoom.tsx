@@ -16,6 +16,7 @@ const GameRoom = () => {
   const [gameRoomURL, setGameRoomURL] = useState("");
   const [isConnected, setIsConnected] = useState(false);
   const [playerToken, setPlayerToken] = useState(null);
+  const [playerId, setPlayerId] = useState(null);  
   const router = useRouter();
 
   const roomName = router.query.roomName;
@@ -61,6 +62,7 @@ const GameRoom = () => {
       }
       if (data.type === 'player_token') {
         setPlayerToken(data.token);
+        setPlayerId(data.player_id);
       }
       if (data.type === 'connection_closed') {
         if (data.message === 'invalid_room_password') {
@@ -97,7 +99,14 @@ const GameRoom = () => {
     const message = {
       type: 'ready_to_start',
       message: 'ready_to_start',
-      // Add any additional data you want to send with the message
+    };
+    handleSend(message);
+  };
+
+  const handleDoneDrawing = () => {
+    const message = {
+      type: 'done_drawing',
+      message: 'done_drawing',
     };
     handleSend(message);
   };
@@ -145,9 +154,10 @@ const GameRoom = () => {
       <div className={styles.row}>
         <PlayerList players={players} />
         <PlayingField 
-          gameData={gameData} 
+          gameData={{ ...gameData, playerId: playerId }} 
           variant={playingFieldVariant}   
           onReadyToStart={handleReadyToStart}
+          className={playingFieldVariant === 'lobby' ? styles.lobbyVariant : styles.drawingVariant}
  />
       </div>
       <Accordion title={"How To Play"}>

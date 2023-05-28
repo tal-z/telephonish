@@ -13,7 +13,7 @@ type PlayingFieldProps = {
   onReadyToStart: () => void;
 };
 
-export const PlayingField = ({ variant, gameData, onReadyToStart}: PlayingFieldProps) => {
+export const PlayingField = ({ variant, gameData, onReadyToStart }: PlayingFieldProps) => {
   if (variant === "lobby") {
     return (
       <div className={styles.playingFieldColumnContainer}>
@@ -23,13 +23,14 @@ export const PlayingField = ({ variant, gameData, onReadyToStart}: PlayingFieldP
   }
 
   if (variant === "drawing") {
+    const prompt = "Eat a banana";
     return (
       <div className={styles.playingFieldColumnContainer}>
         <div className={styles.playingFieldRowContainer}>
-          <WrittenPrompt prompt={"Eat a banana"} />
+          <WrittenPrompt prompt={prompt} />
           <CountdownTimer seconds={120} variant="drawing" />
         </div>
-        <DrawPad />
+        <DrawPad gameData={gameData} prompt={prompt}/>
       </div>
     );
   }

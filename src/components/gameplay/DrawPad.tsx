@@ -4,7 +4,7 @@ import ColorPicker from "./ColorPicker";
 import styles from "../../styles/DrawPad.module.css";
 import axios from "axios";
 
-const DrawPad: React.FC = () => {
+const DrawPad: React.FC = ({ gameData, prompt }) => {
   const [color, setColor] = useState("#000000");
   const [brushSize, setBrushSize] = useState(5);
   const canvasRef = useRef<CanvasDraw>(null);
@@ -27,9 +27,24 @@ const DrawPad: React.FC = () => {
 
   const handleSubmit = () => {
     const dataUrl = canvasRef.current?.getDataURL();
-    axios.post("/submit-canvas", { dataUrl }).catch((error) => {
-      console.error(error);
-    });
+  
+    const payload = {
+      player: gameData.playerId,  // TODO: fix this to be correct player_id
+      room: gameData.room_id,
+      round_number: gameData.current_round_number,
+      dataUrl: dataUrl,
+      prompt: prompt,
+    };
+    console.log(payload);
+  
+    axios
+      .post("http://127.0.0.1:8000/game/submit-drawing/", payload)
+      .then((response) => {
+        console.log(response.data);  // Handle the response as needed
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
