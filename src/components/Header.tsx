@@ -6,7 +6,7 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <span className={styles.title}>Telephonish</span>
+          <span className={styles.title}>Telephonish ☎️</span>
         </div>
         <nav className={styles.navbar}>
           <a href="/" className={styles.navlink}>

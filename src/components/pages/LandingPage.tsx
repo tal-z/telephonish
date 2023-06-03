@@ -12,7 +12,7 @@ export const LandingPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to Telephonish</h1>
+        <h1 className={styles.title}>Welcome to Telephonish ☎️</h1>
 
         <p className={styles.description}>
           Telephonish is a modern twist on the classic game of Telephone, where
