@@ -4,9 +4,10 @@ import ColorPicker from "./ColorPicker";
 import styles from "../../styles/DrawPad.module.css";
 import axios from "axios";
 
-const DrawPad: React.FC = ({ gameData, prompt }) => {
+const DrawPad: React.FC = ({ gameData, prompt, onDoneDrawing }) => {
   const [color, setColor] = useState("#000000");
   const [brushSize, setBrushSize] = useState(5);
+  const [submitted, setSubmitted] = useState(false);
   const canvasRef = useRef<CanvasDraw>(null);
 
   const handleColorChange = (newColor: string) => {
@@ -35,17 +36,19 @@ const DrawPad: React.FC = ({ gameData, prompt }) => {
       dataUrl: dataUrl,
       prompt: prompt,
     };
-    console.log(payload);
   
     axios
       .post("http://127.0.0.1:8000/game/submit-drawing/", payload)
       .then((response) => {
-        console.log(response.data);  // Handle the response as needed
+        onDoneDrawing();
+        setSubmitted(true);
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
+  const submitButtonText = submitted ? "Waiting for other players" : "Done Drawing";
 
   return (
     <div className={styles.drawPadContainer}>
@@ -84,9 +87,7 @@ const DrawPad: React.FC = ({ gameData, prompt }) => {
         </button>
       </div>
       <button className={styles.submitButton} onClick={handleSubmit}>
-        Done
-        <br />
-        Drawing!
+        {submitButtonText}
       </button>
     </div>
   );

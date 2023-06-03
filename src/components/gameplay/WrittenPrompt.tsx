@@ -8,7 +8,7 @@ interface WrittenPromptProps {
 const WrittenPrompt: React.FC<WrittenPromptProps> = ({ prompt }) => {
   return (
     <div className={styles.promptCard}>
-      Draw This Prompt:
+      Draw This Story:
       <div className={styles.promptText}>"{prompt}"</div>
     </div>
   );

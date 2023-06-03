@@ -12,7 +12,8 @@ import axios from "axios";
 const GameRoom = () => {
   const [players, setPlayers] = useState({});
   const [playingFieldVariant, setPlayingFieldVariant] = useState("lobby");
-  const [gameData, setGameData] = useState(null);
+  const [gameRoomData, setGameRoomData] = useState(null);
+  const [gameplayData, setGameplayData] = useState(null);
   const [gameRoomURL, setGameRoomURL] = useState("");
   const [isConnected, setIsConnected] = useState(false);
   const [playerToken, setPlayerToken] = useState(null);
@@ -54,11 +55,11 @@ const GameRoom = () => {
       const data = JSON.parse(event.data);
       if (data.type === "player_connect") {
         // Re-request game room data and update player list
-        fetchGameData();
+        fetchGameRoomData();
       }
       if (data.type === "player_disconnect") {
         // Re-request game room data and update player list
-        fetchGameData();
+        fetchGameRoomData();
       }
       if (data.type === 'player_token') {
         setPlayerToken(data.token);
@@ -72,8 +73,13 @@ const GameRoom = () => {
         }
       }
       if (data.type === 'ready_to_start') {
-        console.log(data);
+        setPlayingFieldVariant('one-sentence-story');
+      }
+      if (data.type === 'done_writing_story') {
         setPlayingFieldVariant('drawing');
+      }
+      if (data.type === 'done_drawing') {
+        setPlayingFieldVariant('poem');
       }
     };
   };
@@ -103,6 +109,15 @@ const GameRoom = () => {
     handleSend(message);
   };
 
+  const handleDoneStory = () => {
+    const message = {
+      type: 'done_writing_story',
+      message: 'done_writing_story',
+    };
+    handleSend(message);
+  };
+
+
   const handleDoneDrawing = () => {
     const message = {
       type: 'done_drawing',
@@ -111,15 +126,29 @@ const GameRoom = () => {
     handleSend(message);
   };
 
-  const fetchGameData = async () => {
+  const fetchGameRoomData = async () => {
     try {
       const response = await axios.get(
         `http://127.0.0.1:8000/game/get-room-info/${roomName}`
       );
       const data = response.data;
 
-      setGameData(data.room_data);
+      setGameRoomData(data.room_data);
       setPlayers(data.player_data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchGameplayData = async () => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/game/get-gameplay-info/${roomName}`
+      );
+      const data = response.data;
+      console.log(data);
+
+      setGameplayData(data);
     } catch (error) {
       console.error(error);
     }
@@ -127,7 +156,8 @@ const GameRoom = () => {
 
 
   useEffect(() => {
-    fetchGameData();
+    fetchGameRoomData();
+    fetchGameplayData();
     handleConnect();
   }, []);
 
@@ -154,9 +184,11 @@ const GameRoom = () => {
       <div className={styles.row}>
         <PlayerList players={players} />
         <PlayingField 
-          gameData={{ ...gameData, playerId: playerId }} 
+          gameData={{ ...gameRoomData, playerId: playerId }} 
           variant={playingFieldVariant}   
           onReadyToStart={handleReadyToStart}
+          onDoneStory={handleDoneStory}
+          onDoneDrawing={handleDoneDrawing}
           className={playingFieldVariant === 'lobby' ? styles.lobbyVariant : styles.drawingVariant}
  />
       </div>

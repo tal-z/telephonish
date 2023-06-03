@@ -7,7 +7,9 @@ interface ImageDisplayProps {
 
 const ImageDisplay = ({ dataURL, alt }: ImageDisplayProps) => {
   return (
-    <img className={style.imageDisplayContainer} src={dataURL} alt={alt} />
+    <div className={style.imageDisplayContainer} >
+          <img className={style.imageDisplay} src={dataURL} alt={alt} />
+    </div>
   );
 };
 

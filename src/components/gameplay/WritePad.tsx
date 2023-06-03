@@ -1,29 +1,34 @@
 import React, { useState } from "react";
-import axios from "axios";
 import styles from "../../styles/WritePad.module.css";
 import "text-encoding";
 
 interface RoomSubmitProps {
   endpoint: string;
   placeholder: string;
+  inputValue: string;
+  setInputValue: (value: string) => void;
+  loading: boolean;
+  onSubmit: () => void;
 }
 
-export const WritePad = ({ endpoint, placeholder }: RoomSubmitProps) => {
-  const [inputValue, setInputValue] = useState("");
-  const [loading, setLoading] = useState(false);
+export const WritePad = ({ endpoint, placeholder, inputValue, setInputValue, loading, onSubmit }: RoomSubmitProps) => {
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    try {
-      await axios.post(endpoint, {
-        data: inputValue,
-      });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleStorySubmit = async () => {
+    await onSubmit();
+    setSubmitted(true);
   };
+
+  const submitButtonText = (
+    loading 
+    ? "Loading..." 
+    : (
+        submitted 
+        ? "Waiting for other players" 
+        : "Submit"
+      )
+  );
 
   return (
     <div className={styles.inputContainer}>
@@ -32,8 +37,8 @@ export const WritePad = ({ endpoint, placeholder }: RoomSubmitProps) => {
         onChange={(e) => setInputValue(e.target.value)}
         placeholder={placeholder}
       />
-      <button onClick={handleSubmit} disabled={loading}>
-        {loading ? "Loading..." : "Submit"}
+      <button onClick={handleStorySubmit} disabled={loading}>
+        {submitButtonText}
       </button>
     </div>
   );

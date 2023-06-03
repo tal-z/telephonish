@@ -2,6 +2,15 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/Lobby.module.css";
 
 export const Lobby = ({ gameData, onReadyToStart }) => {
+
+  const [submitted, setSubmitted] = useState(false);
+  const handleReadyToStart = () => {
+    onReadyToStart();
+    setSubmitted(true);
+  };
+
+  const submitButtonText = submitted ? "Waiting for Other Players" : "Ready to Start!";
+
   return (
     <div className={styles.gameInfo}>
       {gameData && (
@@ -22,9 +31,9 @@ export const Lobby = ({ gameData, onReadyToStart }) => {
       )}
       <button
         className={styles.startGameButton}
-        onClick={onReadyToStart}
+        onClick={handleReadyToStart}
       >
-        Ready to Start!
+        {submitButtonText}
       </button>
     </div>
   );

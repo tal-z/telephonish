@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/CountdownTimer.module.css";
 
-type CountdownTimerProps = {
-  seconds: number;
-  variant?: string;
-};
-
-const CountdownTimer = ({ seconds, variant }: CountdownTimerProps) => {
+const CountdownTimer = ({ seconds, variant }) => {
   const [timeLeft, setTimeLeft] = useState(seconds);
 
   const timerVariant =
     variant === "drawing"
-      ? styles.countdownTimerDrawing
-      : styles.countdownTimerWriting;
+      ? `${styles.countdownTimerDrawing} ${timeLeft <= 20 ? styles.pulse : ""}`
+      : `${styles.countdownTimerWriting} ${timeLeft <= 20 ? styles.pulse : ""}`;
 
   useEffect(() => {
     if (!timeLeft) return;
