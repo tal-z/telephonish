@@ -17,6 +17,13 @@ type PlayingFieldProps = {
 };
 
 export const PlayingField = ({ variant, gameData, onReadyToStart, onDoneStory, onDoneDrawing }: PlayingFieldProps) => {
+  
+  const [dataUrl, setDataUrl] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+  const [poemInputValue, setPoemInputValue] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [storyText, setStoryText] = useState(null);
+
   if (variant === "lobby") {
     return (
       <div className={styles.playingFieldColumnContainer}>
@@ -26,8 +33,6 @@ export const PlayingField = ({ variant, gameData, onReadyToStart, onDoneStory, o
   }
 
   if (variant === "one-sentence-story") {
-    const [inputValue, setInputValue] = useState("");
-    const [loading, setLoading] = useState(false);
 
     const handleStorySubmit = async () => {
       setLoading(true);
@@ -62,9 +67,6 @@ export const PlayingField = ({ variant, gameData, onReadyToStart, onDoneStory, o
   }
 
   if (variant === "drawing") {
-
-    const [storyText, setStoryText] = useState(null);
-    const [dataUrl, setDataUrl] = useState(null);
     
     const getPlayerStory = async (player, room, roundNumber) => {
       try {
@@ -100,9 +102,6 @@ export const PlayingField = ({ variant, gameData, onReadyToStart, onDoneStory, o
 
   if (variant === "poem") {
 
-    const [dataUrl, setDataUrl] = useState(null);
-
-
     const getPlayerDrawing = async (player, room, roundNumber) => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/game/get-drawing/', {
@@ -124,8 +123,6 @@ export const PlayingField = ({ variant, gameData, onReadyToStart, onDoneStory, o
 
     getPlayerDrawing( gameData.playerId, gameData.room_id, gameData.current_round_number )
 
-    const [inputValue, setInputValue] = useState("");
-    const [loading, setLoading] = useState(false);
 
     const handlePoemSubmit = async () => {
       setLoading(true);
@@ -150,8 +147,8 @@ export const PlayingField = ({ variant, gameData, onReadyToStart, onDoneStory, o
           <WritePad
             endpoint=""
             placeholder="Write a poem about this picture!"
-            inputValue={inputValue}
-            setInputValue={setInputValue}
+            inputValue={poemInputValue}
+            setInputValue={setPoemInputValue}
             loading={loading}
             onSubmit={handlePoemSubmit}
           />
