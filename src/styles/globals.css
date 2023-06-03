@@ -40,7 +40,6 @@ a:hover {
 
 button {
   font-family: "GochiHand", cursive;
-
   background-color: #7e6aaf;
   color: #fff;
   font-weight: 700;
@@ -69,9 +68,9 @@ input[type="checkbox"] {
   width: 2rem;
   height: 2rem;
   border-radius: 10px;
-  border: 1px solid #999;
   outline: none;
   background-color: #fff;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
 input[type="checkbox"]:checked {

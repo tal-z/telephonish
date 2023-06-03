@@ -6,9 +6,8 @@
 
 .inputContainer input[type="text"],
 .inputContainer button {
-  height: 40px;
+  height: 100%;
   padding: 8px 16px;
-  border-radius: 10px;
   font-size: 16px;
   line-height: 1.5;
   box-sizing: border-box;
@@ -23,7 +22,7 @@
 .inputContainer input[type="text"] {
   margin-right: 0.5rem;
   width: 100%;
-  border: 1px solid #ccc;
+  border: none;
 }
 
 .flashAnimation {

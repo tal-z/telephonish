@@ -6,10 +6,11 @@
   font-size: 1.5rem;
   padding: 0.5rem;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: none;
   margin-bottom: 2rem;
   width: 60%;
   box-sizing: border-box;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
 .inputContainer button {

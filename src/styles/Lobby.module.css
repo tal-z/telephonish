@@ -11,8 +11,12 @@
 }
 
 .startGameButton {
-  margin: 1rem;
+  width: 10rem;
   height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
 }
 
 .gameplayType {
