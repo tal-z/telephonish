@@ -85,6 +85,23 @@ export const JoinRoom = ({ endpoint }: JoinRoomProps) => {
     }
   };
 
+  
+  const getRandomPlayerName = async () => {
+    try {
+      await axios.get('http://127.0.0.1:8000/game/generate-player-name')
+      .then((request) => {
+        setPlayerName(request.data.random_player_name);
+      })
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getRandomPlayerName();
+  }, []);
+
+
   return (
     <div>
       <h1>Join an Existing Game!</h1>

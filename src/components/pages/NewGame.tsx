@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { JustifiedContainer } from "../JustifiedContainer";
 import styles from "../../styles/CreateRoom.module.css";
 import axios from "axios";
@@ -19,8 +19,8 @@ export const RoomSubmit = () => {
   const [isFocused, setIsFocused] = useState(false); // Add new state variable
   const router = useRouter();
   const [checkboxState, setCheckboxState] = useState<CheckboxState>({
-    oneSentenceStory: false,
-    drawing: false,
+    oneSentenceStory: true,
+    drawing: true,
     poem: false,
     dramaticReading: false,
   });
@@ -96,6 +96,14 @@ export const RoomSubmit = () => {
 
   function CheckboxComponent() {
     const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+      // Disable changing the value for "One-Sentence Story", "Drawing", and "Dramatic Reading" checkboxes
+      if (
+        event.target.name === "oneSentenceStory" ||
+        event.target.name === "drawing" ||
+        event.target.name === "dramaticReading"
+      ) {
+        return;
+      }
       setCheckboxState({
         ...checkboxState,
         [event.target.name]: event.target.checked,
@@ -109,22 +117,24 @@ export const RoomSubmit = () => {
           <input
             type="checkbox"
             name="oneSentenceStory"
+            disabled
             checked={checkboxState.oneSentenceStory}
             onChange={handleCheckboxChange}
             className={styles.checkboxInput}
           />
-          <span className={styles.checkboxText}>📇 One-Sentence Story</span>
+          <span className={styles.checkboxText}>📇 One-Sentence Story (Always Selected)</span>
         </label>
         <br />
         <label className={styles.checkboxLabel}>
           <input
             type="checkbox"
             name="drawing"
+            disabled
             checked={checkboxState.drawing}
             onChange={handleCheckboxChange}
             className={styles.checkboxInput}
           />
-          <span className={styles.checkboxText}>✏️ Drawing</span>
+          <span className={styles.checkboxText}>✏️ Drawing (Always Selected)</span>
         </label>
         <br />
         <label className={styles.checkboxLabel}>
@@ -146,11 +156,39 @@ export const RoomSubmit = () => {
             onChange={handleCheckboxChange}
             className={styles.checkboxInput}
           />
-          <span className={styles.checkboxText}>🎤 Dramatic Reading</span>
+          <span className={styles.checkboxText}>🎤 Dramatic Reading (Coming Soon!)</span>
         </label>
       </div>
     );
   }
+
+  const getRandomRoomName = async () => {
+    try {
+      await axios.get('http://127.0.0.1:8000/game/generate-room-name')
+      .then((request) => {
+        setRoomName(request.data.random_room_name);
+      })
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  const getRandomPlayerName = async () => {
+    try {
+      await axios.get('http://127.0.0.1:8000/game/generate-player-name')
+      .then((request) => {
+        setPlayerName(request.data.random_player_name);
+      })
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getRandomRoomName();
+    getRandomPlayerName();
+  }, []);
 
   return (
     <div>
@@ -169,17 +207,7 @@ export const RoomSubmit = () => {
         />
       </div>
 
-      <h2>Game Room Password (optional)</h2>
-      <div className={styles.inputContainer}>
-        <input
-          type="password"
-          value={password}
-          onChange={handlePasswordChange}
-          placeholder={"Enter game room password (if you wish)..."}
-        />
-      </div>
-
-      <h2>Enter a Player Name</h2>
+      <h2>Player Name</h2>
       <div className={styles.inputContainer}>
         <input
           type="text"
@@ -191,10 +219,20 @@ export const RoomSubmit = () => {
           onKeyDown={handleKeyDown}
         />
       </div>
+      
+      <h2>Game Room Password (optional)</h2>
+      <div className={styles.inputContainer}>
+        <input
+          type="password"
+          value={password}
+          onChange={handlePasswordChange}
+          placeholder={"Enter game room password (if you wish)..."}
+        />
+      </div>
 
-      <h2>Create Room!</h2>
+
       <button onClick={handleSubmit} disabled={loading}>
-        {loading ? "Loading..." : "Submit"}
+        {loading ? "Loading..." : "Create Room!"}
       </button>
       {showValidation && !isCheckboxValid && (
         <div className={styles.error}>Please select at least one checkbox</div>
