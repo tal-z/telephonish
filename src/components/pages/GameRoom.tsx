@@ -19,6 +19,7 @@ const GameRoom = () => {
   const [playerToken, setPlayerToken] = useState(null);
   const [playerId, setPlayerId] = useState(null);  
   const router = useRouter();
+  const [currentRoundNumber, setCurrentRoundNumber] = useState(0); // Add state for current round number
 
   const roomName = router.query.roomName;
   const roomId = router.query.roomId;
@@ -67,19 +68,23 @@ const GameRoom = () => {
       }
       if (data.type === 'connection_closed') {
         if (data.message === 'invalid_room_password') {
-          router.push('/error/unable-to-connect')
+          router.push('/error/unable-to-connect') 
         } else {
           router.push("/error/unknown-error");
         }
       }
       if (data.type === 'ready_to_start') {
-        setPlayingFieldVariant('one-sentence-story');
+        fetchGameplayData();
+        fetchGameRoomData();
       }
       if (data.type === 'done_writing_story') {
-        setPlayingFieldVariant('drawing');
+        fetchGameRoomData();
       }
       if (data.type === 'done_drawing') {
-        setPlayingFieldVariant('poem');
+        fetchGameRoomData();
+      }
+      if (data.type === 'done_poem') {
+        fetchGameRoomData();
       }
     };
   };
@@ -117,11 +122,18 @@ const GameRoom = () => {
     handleSend(message);
   };
 
-
   const handleDoneDrawing = () => {
     const message = {
       type: 'done_drawing',
       message: 'done_drawing',
+    };
+    handleSend(message);
+  };
+
+  const handleDonePoem = () => {
+    const message = {
+      type: 'done_poem',
+      message: 'done_poem',
     };
     handleSend(message);
   };
@@ -132,9 +144,12 @@ const GameRoom = () => {
         `http://127.0.0.1:8000/game/get-room-info/${roomName}`
       );
       const data = response.data;
+      console.log(data);
 
       setGameRoomData(data.room_data);
+      setCurrentRoundNumber(data.room_data.current_round_number);
       setPlayers(data.player_data);
+      await fetchGameplayData();
     } catch (error) {
       console.error(error);
     }
@@ -147,8 +162,11 @@ const GameRoom = () => {
       );
       const data = response.data;
       console.log(data);
-
       setGameplayData(data);
+      if (data.current_round_number > 0) {
+        console.log("tzz", data, data.current_round_number - 1);
+        setPlayingFieldVariant(data.round_order[data.current_round_number - 1]);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -157,7 +175,6 @@ const GameRoom = () => {
 
   useEffect(() => {
     fetchGameRoomData();
-    fetchGameplayData();
     handleConnect();
   }, []);
 
@@ -167,6 +184,7 @@ const GameRoom = () => {
     };
     updateGameRoomURL();
   }, [roomName]);
+  
 
   useEffect(() => {
     return () => {
@@ -182,13 +200,16 @@ const GameRoom = () => {
     <JustifiedContainer alignment="left">
       <h2>Now Playing: {roomName}</h2>
       <div className={styles.row}>
-        <PlayerList players={players} />
+        <PlayerList players={players} clientId={playerId} />
         <PlayingField 
-          gameData={{ ...gameRoomData, playerId: playerId }} 
+          gameData={{ ...gameRoomData, playerId: playerId }}
+          gameplayData={gameplayData}
+          playerName={playerName}
           variant={playingFieldVariant}   
           onReadyToStart={handleReadyToStart}
           onDoneStory={handleDoneStory}
           onDoneDrawing={handleDoneDrawing}
+          onDonePoem={handleDonePoem}
           className={playingFieldVariant === 'lobby' ? styles.lobbyVariant : styles.drawingVariant}
  />
       </div>
