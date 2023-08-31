@@ -30,7 +30,7 @@ const DrawPad: React.FC = ({ gameData, prompt, onDoneDrawing }) => {
     const dataUrl = canvasRef.current?.getDataURL();
   
     const payload = {
-      player: gameData.playerId,  // TODO: fix this to be correct player_id
+      player: gameData.playerId,
       room: gameData.room_id,
       round_number: gameData.current_round_number,
       dataUrl: dataUrl,
