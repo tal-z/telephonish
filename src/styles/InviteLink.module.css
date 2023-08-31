@@ -26,15 +26,18 @@
 }
 
 .flashAnimation {
-  animation: flash 0.5s infinite;
+  animation: flash 0.4s;
 }
 
 @keyframes flash {
   0% {
     background-color: white;
   }
-  50% {
-    background-color: rgb(247, 239, 255);
+  33% {
+    background-color: #ffb2d8;
+  }
+  66% {
+    background-color: #f0ffb2;
   }
   100% {
     background-color: white;
