@@ -15,17 +15,21 @@ export const Lobby = ({ gameData, onReadyToStart }) => {
     <div className={styles.gameInfo}>
       {gameData && (
         <div>
-          <h2>Game Play Types Selected</h2>
+          <h2>Get Ready to Play!</h2>
+          <h4>Here's what you'll be doing:</h4>
           <ul>
-            {Object.entries(gameData)
-              .filter(
-                ([key, value]) => key.endsWith("_round") && value === true
-              )
-              .map(([key, _]) => (
-                <li className={styles.gameplayType} key={key}>
-                  {key.replaceAll("_", " ").replace("round", "")}
-                </li>
-              ))}
+              <li className={styles.gameplayType} key="story">
+                1. Writing a really short story
+              </li>
+              <li className={styles.gameplayType} key="drawing">
+                2. Drawing somebody else's short story
+              </li>
+              <li className={styles.gameplayType} key="describing">
+                3. Describing somebody else's drawing
+              </li>
+              <li className={styles.gameplayType} key="repeat">
+                t. Rinse and repeat!
+              </li>
           </ul>
         </div>
       )}
