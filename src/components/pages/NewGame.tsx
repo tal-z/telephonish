@@ -193,7 +193,6 @@ export const RoomSubmit = () => {
   return (
     <div>
       <h1>Start a New Game!</h1>
-      <CheckboxComponent />
       <h2>Game Room Name</h2>
       <div className={styles.inputContainer}>
         <input
