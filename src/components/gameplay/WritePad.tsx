@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../styles/WritePad.module.css";
 import "text-encoding";
 
@@ -30,6 +30,11 @@ export const WritePad = ({ endpoint, placeholder, inputValue, setInputValue, loa
       )
   );
 
+  useEffect(() => {
+    // Clear the input value when the component renders
+    setInputValue("");
+  }, []);
+  
   return (
     <div className={styles.inputContainer}>
       <textarea
